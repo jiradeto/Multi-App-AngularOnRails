@@ -6,5 +6,7 @@ const {
 } = require('./web-app/webpack.config.js');
 
 module.exports = [
-    ADMIN_CONFIG, WEB_CONFIG
+     WEB_CONFIG
 ];
+
+

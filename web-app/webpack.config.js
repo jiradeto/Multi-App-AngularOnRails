@@ -1,11 +1,8 @@
-var config = {
-  module: {},
-};
 const path = require('path');
-const {
-  GlobCopyWebpackPlugin,
-  BaseHrefWebpackPlugin
-} = require('@angular/cli/plugins/webpack');
+
+
+
+
 const {
   CheckerPlugin
 } = require('awesome-typescript-loader')
@@ -13,10 +10,9 @@ const {
   CommonsChunkPlugin
 } = require('webpack').optimize;
 
-
 var AssetsPlugin = require('assets-webpack-plugin');
 
-const WEB_CONFIG = Object.assign({}, config, {
+const WEB_CONFIG = {
   "devtool": "source-map",
   "resolve": {
     "extensions": ['.ts', '.tsx', '.js', '.jsx']
@@ -50,7 +46,6 @@ const WEB_CONFIG = Object.assign({}, config, {
         loaders: ['file-loader?name=assets/[name].[hash].[ext]']
       },
       {
-
         "test": /\.css$/,
         "loaders": [
           "exports-loader?module.exports.toString()",
@@ -77,8 +72,7 @@ const WEB_CONFIG = Object.assign({}, config, {
     chunkFilename: '[id].chunk.js',
     publicPath: "wassets/web/"
   }
-});
-
+}
 
 module.exports = {
   WEB_CONFIG

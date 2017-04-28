@@ -1,6 +1,3 @@
-var config = {
-  module: {},
-};
 const path = require('path');
 const {
   CheckerPlugin
@@ -11,7 +8,7 @@ const {
 
 var AssetsPlugin = require('assets-webpack-plugin');
 
-const ADMIN_CONFIG = Object.assign({}, config, {
+const ADMIN_CONFIG = {
   "devtool": "source-map",
   "resolve": {
     "extensions": ['.ts', '.tsx', '.js', '.jsx']
@@ -67,7 +64,7 @@ const ADMIN_CONFIG = Object.assign({}, config, {
     chunkFilename: '[id].chunk.js',
     publicPath: "wassets/admin/"
   }
-});
+}
 
 module.exports = {
   ADMIN_CONFIG

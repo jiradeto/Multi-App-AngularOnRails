@@ -6,8 +6,14 @@
     "build:watch": "rm -rf public/wassets/* && webpack --progress --color --watch"
   },
   "dependencies": {
-    "angular2-template-loader": "^0.6.2",
-    "bootstrap": "^4.0.0-alpha.4",
+    "@angular/common": "^4.0.0",
+    "@angular/compiler": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "@angular/http": "^4.0.0",
+    "@angular/platform-browser": "^4.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0",
+    "@angular/router": "^4.0.0",
     "core-js": "^2.4.1",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
@@ -17,8 +23,10 @@
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
+    "angular2-template-loader": "^0.6.2",
     "assets-webpack-plugin": "latest",
     "autoprefixer": "^6.5.3",
+    "file-loader": "^0.10.0",
     "awesome-typescript-loader": "^3.1.2",
     "codelyzer": "~2.0.0",
     "css-loader": "^0.26.1",
@@ -52,6 +60,7 @@
     "tslint-loader": "^3.5.2",
     "typescript": "~2.2.0",
     "url-loader": "^0.5.7",
-    "webpack-dev-server": "~2.3.0"
+    "webpack-dev-server": "~2.3.0",
+    "webpack-node-externals": "^1.5.4"
   }
 }
