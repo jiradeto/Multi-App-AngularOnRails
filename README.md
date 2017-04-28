@@ -38,5 +38,5 @@ bundle install && rake db:create && rails server
 ```
 
 
-- Web app -> [localhost:3000](localhost:3000)
-- Admin app -> [localhost:3000/admin](localhost:3000/admin)
+- Web app -> [localhost:3000](http://localhost:3000)
+- Admin app -> [localhost:3000/admin](http://localhost:3000/admin)
