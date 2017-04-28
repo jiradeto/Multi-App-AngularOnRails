@@ -1,12 +1,10 @@
-
-console.log('222');
-// require('./hello/webpack.config.js');
-require('./goodbye/webpack.config.js');
-console.log('33');
-
-
-
+const {
+    GOODBYE_CONFIG
+} = require('./goodbye/webpack.config.js');
+const {
+    HELLO_CONFIG
+} = require('./hello/webpack.config.js');
 
 module.exports = [
-    //  goodbyeConfig
+    GOODBYE_CONFIG, HELLO_CONFIG
 ];

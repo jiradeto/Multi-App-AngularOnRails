@@ -1,11 +1,11 @@
 {
-  "name": "hello",
+  "name": "goodbye",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "webpack-dev-server --port=4200",
-    "build": "webpack --watch",
+    "build": "webpack",
     "test": "karma start ./karma.conf.js",
     "lint": "ng lint",
     "e2e": "protractor ./protractor.conf.js",
@@ -22,15 +22,12 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
-    "bootstrap": "^4.0.0-alpha.4",
     "core-js": "^2.4.1",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "assets-webpack-plugin": "latest",
-    "@angular/cli": "1.0.0",
-    "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",

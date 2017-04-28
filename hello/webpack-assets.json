@@ -1,1 +1,1 @@
-{"polyfills":{"js":"wassets/hello/polyfills_3fb58d2fe24d99ae839f.bundle.js"},"main":{"js":"wassets/hello/main_3fb58d2fe24d99ae839f.bundle.js"},"styles":{"js":"wassets/hello/styles_3fb58d2fe24d99ae839f.bundle.js"},"vendor":{"js":"wassets/hello/vendor_3fb58d2fe24d99ae839f.bundle.js"},"inline":{"js":"wassets/hello/inline_3fb58d2fe24d99ae839f.bundle.js"}}
+{"vendor":{"js":"wassets/hello/vendor_c04aba547e3430162ac1.bundle.js"},"main":{"js":"wassets/hello/main_c04aba547e3430162ac1.bundle.js"},"polyfills":{"js":"wassets/hello/polyfills_c04aba547e3430162ac1.bundle.js"}}

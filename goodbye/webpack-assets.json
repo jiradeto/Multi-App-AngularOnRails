@@ -1,17 +1,1 @@
-{
-  "polyfills": {
-    "js": "wassets/goodbye/polyfills_42ee7c65a292ccf0c9ed.bundle.js"
-  },
-  "main": {
-    "js": "wassets/goodbye/main_42ee7c65a292ccf0c9ed.bundle.js"
-  },
-  "styles": {
-    "js": "wassets/goodbye/styles_42ee7c65a292ccf0c9ed.bundle.js"
-  },
-  "vendor": {
-    "js": "wassets/goodbye/vendor_42ee7c65a292ccf0c9ed.bundle.js"
-  },
-  "inline": {
-    "js": "wassets/goodbye/inline_42ee7c65a292ccf0c9ed.bundle.js"
-  }
-}
+{"vendor":{"js":"wassets/goodbye/vendor_db611d7704796e48393f.bundle.js"},"main":{"js":"wassets/goodbye/main_db611d7704796e48393f.bundle.js"},"polyfills":{"js":"wassets/goodbye/polyfills_db611d7704796e48393f.bundle.js"}}
