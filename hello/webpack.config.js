@@ -3,6 +3,10 @@ var config = {
 };
 const path = require('path');
 const {
+  GlobCopyWebpackPlugin,
+  BaseHrefWebpackPlugin
+} = require('@angular/cli/plugins/webpack');
+const {
   CheckerPlugin
 } = require('awesome-typescript-loader')
 const {
@@ -40,6 +44,10 @@ const HELLO_CONFIG = Object.assign({}, config, {
       }, {
         "test": /\.html$/,
         "loader": "raw-loader"
+      },
+      {
+        test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        loaders: ['file-loader?name=assets/[name].[hash].[ext]']
       },
       {
 

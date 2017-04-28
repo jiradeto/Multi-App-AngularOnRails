@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "build:prod": "rm -rf public/wassets/* && webpack --progress --config webpack.prod.js --bail",
-    "start": "rm -rf ./public/wassets && webpack --progress --color"
+    "build": "rm -rf public/wassets/* && webpack --progress --color",
+    "build:watch": "rm -rf public/wassets/* && webpack --progress --color --watch"
   },
   "dependencies": {
     "angular2-template-loader": "^0.6.2",
