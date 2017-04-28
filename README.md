@@ -1,6 +1,6 @@
 # Setup 
 ## Install dependencies
-### For project dependencies, go to root directory 
+### For project dependencies
 ```
 npm install 
 ```
@@ -20,7 +20,7 @@ npm install
 <br>
 
 ## Build Angular2 app to Rails public/wasset directory
-back to root app directory, and type
+back to root app directory, and run following command
 - Development
 ```
 npm run build
@@ -36,3 +36,7 @@ npm run build:prod
 ```
 bundle install && rake db:create && rails server
 ```
+
+
+- Web app -> [localhost:3000](localhost:3000)
+- Admin app -> [localhost:3000/admin](localhost:3000/admin)
