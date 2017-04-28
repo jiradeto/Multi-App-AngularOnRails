@@ -1,21 +1,22 @@
 const path = require('path');
 
-
-
-
 const {
   CheckerPlugin
-} = require('awesome-typescript-loader')
+} = require("awesome-typescript-loader")
 const {
   CommonsChunkPlugin
-} = require('webpack').optimize;
+} = require("webpack").optimize;
 
-var AssetsPlugin = require('assets-webpack-plugin');
+var AssetsPlugin = require(path.join(__dirname, "node_modules/assets-webpack-plugin"));
 
 const WEB_CONFIG = {
-  "devtool": "source-map",
-  "resolve": {
+
+  devtool: "source-map",
+  resolve: {
     "extensions": ['.ts', '.tsx', '.js', '.jsx']
+  },
+  resolveLoader: {
+    "modules": [path.join(__dirname, "node_modules/")]
   },
   "entry": {
     "main": [
@@ -33,8 +34,8 @@ const WEB_CONFIG = {
         test: /\.ts$/,
         loaders: [{
           loader: 'awesome-typescript-loader',
-          options: {
-            configFileName: './tsconfig.json'
+          query: {
+            configFileName: 'web-app/tsconfig.json'
           }
         }, 'angular2-template-loader']
       }, {
@@ -56,11 +57,10 @@ const WEB_CONFIG = {
 
     ]
   },
-  "plugins": [
+  plugins: [
     new CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
     }),
-    new CheckerPlugin(),
     new AssetsPlugin({
       path: './web-app'
     })

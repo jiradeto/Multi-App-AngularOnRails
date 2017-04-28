@@ -11,13 +11,11 @@
     "strictNullChecks": false,
     "lib": ["es6", "dom"],
     "typeRoots": [
-      "web-app/node_modules/@types"
+      "node_modules/@types"
     ]
   },
   "exclude": [
-    "web-app/node_modules",
-    "node_modules",
-    "public"
+    "node_modules"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,

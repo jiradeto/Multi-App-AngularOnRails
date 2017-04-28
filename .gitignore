@@ -17,3 +17,4 @@
 .byebug_history
 /public/wassets/*
 /node_modules
+*/node_modules
