@@ -7,7 +7,7 @@
     "build:watch": "rm -rf public/wassets/* && webpack --progress --color --watch"
   },
   "dependencies": {
+    "webpack": "^2.4.1"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

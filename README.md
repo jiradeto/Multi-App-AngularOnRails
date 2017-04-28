@@ -11,7 +11,7 @@ npm run postinstall
 <br>
 
 ## Build Angular2 app to Rails public/wasset directory
-back to root app directory, and run following command
+using webpack for bundle all relate files and library 
 - Development
 ```
 npm run build
