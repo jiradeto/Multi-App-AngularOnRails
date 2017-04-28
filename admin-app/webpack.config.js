@@ -1,17 +1,22 @@
 const path = require('path');
+
 const {
   CheckerPlugin
-} = require('awesome-typescript-loader')
+} = require("awesome-typescript-loader")
 const {
   CommonsChunkPlugin
-} = require('webpack').optimize;
+} = require("webpack").optimize;
 
 var AssetsPlugin = require('assets-webpack-plugin');
 
 const ADMIN_CONFIG = {
-  "devtool": "source-map",
-  "resolve": {
+
+  devtool: "source-map",
+  resolve: {
     "extensions": ['.ts', '.tsx', '.js', '.jsx']
+  },
+  resolveLoader: {
+    "modules": [path.join(__dirname, "node_modules/")]
   },
   "entry": {
     "main": [
@@ -29,13 +34,17 @@ const ADMIN_CONFIG = {
         test: /\.ts$/,
         loaders: [{
           loader: 'awesome-typescript-loader',
-          options: {
-            configFileName: './tsconfig.json'
+          query: {
+            configFileName: path.join(__dirname, "tsconfig.json")
           }
         }, 'angular2-template-loader']
       }, {
         "test": /\.html$/,
         "loader": "raw-loader"
+      },
+      {
+        test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        loaders: ['file-loader?name=assets/[name].[hash].[ext]']
       },
       {
         "test": /\.css$/,
@@ -48,13 +57,12 @@ const ADMIN_CONFIG = {
 
     ]
   },
-  "plugins": [
+  plugins: [
     new CommonsChunkPlugin({
       name: ['app', 'vendor', 'polyfills']
     }),
-    new CheckerPlugin(),
     new AssetsPlugin({
-      path: './admin-app'
+      path: __dirname
     })
   ],
   output: {

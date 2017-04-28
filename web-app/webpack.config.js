@@ -7,7 +7,7 @@ const {
   CommonsChunkPlugin
 } = require("webpack").optimize;
 
-var AssetsPlugin = require(path.join(__dirname, "node_modules/assets-webpack-plugin"));
+var AssetsPlugin = require('assets-webpack-plugin');
 
 const WEB_CONFIG = {
 
@@ -35,7 +35,7 @@ const WEB_CONFIG = {
         loaders: [{
           loader: 'awesome-typescript-loader',
           query: {
-            configFileName: 'web-app/tsconfig.json'
+            configFileName: path.join(__dirname, "tsconfig.json")
           }
         }, 'angular2-template-loader']
       }, {
@@ -62,7 +62,7 @@ const WEB_CONFIG = {
       name: ['app', 'vendor', 'polyfills']
     }),
     new AssetsPlugin({
-      path: './web-app'
+      path: __dirname
     })
   ],
   output: {
