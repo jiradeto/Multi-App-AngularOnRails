@@ -16,7 +16,7 @@ const {
 
 var AssetsPlugin = require('assets-webpack-plugin');
 
-const HELLO_CONFIG = Object.assign({}, config, {
+const WEB_CONFIG = Object.assign({}, config, {
   "devtool": "source-map",
   "resolve": {
     "extensions": ['.ts', '.tsx', '.js', '.jsx']
@@ -67,19 +67,19 @@ const HELLO_CONFIG = Object.assign({}, config, {
     }),
     new CheckerPlugin(),
     new AssetsPlugin({
-      path: './hello'
+      path: './web-app'
     })
   ],
   output: {
-    path: path.join(__dirname, "../public", "wassets/hello/"),
+    path: path.join(__dirname, "../public", "wassets/web/"),
     filename: '[name]_[hash].bundle.js',
     sourceMapFilename: '[name]_[hash].map',
     chunkFilename: '[id].chunk.js',
-    publicPath: "wassets/hello/"
+    publicPath: "wassets/web/"
   }
 });
 
 
 module.exports = {
-  HELLO_CONFIG
+  WEB_CONFIG
 }

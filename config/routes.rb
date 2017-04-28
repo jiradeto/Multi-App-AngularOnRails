@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'application#hello'
+  root to: 'application#web'
 
-  get 'bye' => 'application#goodbye'
+  get 'admin' => 'application#admin'
 end

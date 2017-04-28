@@ -8,11 +8,11 @@ var path = require('path');
 var webpack = require('webpack');
 
 const {
-	GOODBYE_CONFIG
-} = require('./goodbye/webpack.config.js');
+	ADMIN_CONFIG
+} = require('./admin-app/webpack.config.js');
 const {
-	HELLO_CONFIG
-} = require('./hello/webpack.config.js');
+	WEB_CONFIG
+} = require('./web-app/webpack.config.js');
 
 var prodConfig = {
 	plugins: [
@@ -36,7 +36,7 @@ var prodConfig = {
 	]
 };
 
-let targets = [GOODBYE_CONFIG, HELLO_CONFIG].map((target) => {
+let targets = [ADMIN_CONFIG, WEB_CONFIG].map((target) => {
 	let base = webpackMerge(target, prodConfig);
 	return base;
 });

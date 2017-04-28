@@ -15,8 +15,8 @@
     ]
   },
   "exclude": [
-    "./goodbye/node_modules",
-    "./hello/node_modules",
+    "./admin-app/node_modules",
+    "./web-app/node_modules",
     "./node_modules"
   ],
   "awesomeTypescriptLoaderOptions": {

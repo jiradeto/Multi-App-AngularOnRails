@@ -11,7 +11,7 @@ const {
 
 var AssetsPlugin = require('assets-webpack-plugin');
 
-const GOODBYE_CONFIG = Object.assign({}, config, {
+const ADMIN_CONFIG = Object.assign({}, config, {
   "devtool": "source-map",
   "resolve": {
     "extensions": ['.ts', '.tsx', '.js', '.jsx']
@@ -57,18 +57,18 @@ const GOODBYE_CONFIG = Object.assign({}, config, {
     }),
     new CheckerPlugin(),
     new AssetsPlugin({
-      path: './goodbye'
+      path: './admin-app'
     })
   ],
   output: {
-    path: path.join(__dirname, "../public", "wassets/goodbye/"),
+    path: path.join(__dirname, "../public", "wassets/admin/"),
     filename: '[name]_[hash].bundle.js',
     sourceMapFilename: '[name]_[hash].map',
     chunkFilename: '[id].chunk.js',
-    publicPath: "wassets/goodbye/"
+    publicPath: "wassets/admin/"
   }
 });
 
 module.exports = {
-  GOODBYE_CONFIG
+  ADMIN_CONFIG
 }

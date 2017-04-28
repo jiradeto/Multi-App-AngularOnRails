@@ -1,10 +1,10 @@
 const {
-    GOODBYE_CONFIG
-} = require('./goodbye/webpack.config.js');
+    ADMIN_CONFIG
+} = require('./admin-app/webpack.config.js');
 const {
-    HELLO_CONFIG
-} = require('./hello/webpack.config.js');
+    WEB_CONFIG
+} = require('./web-app/webpack.config.js');
 
 module.exports = [
-    GOODBYE_CONFIG, HELLO_CONFIG
+    ADMIN_CONFIG, WEB_CONFIG
 ];

@@ -1,4 +1,4 @@
   <app-root> Loading .. </app-root>
-    <% webpack_script_for('goodbye').each do |file| %> 
+    <% webpack_script_for('web-app').each do |file| %> 
     <%= content_tag(:script, '', src: file.to_s) %>
 	<% end %>
