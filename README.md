@@ -4,18 +4,9 @@
 ```
 npm install 
 ```
-
-### For app dependencies
-- Admin App
+### For app dependencies (admin-app, web-app)
 ```
-cd admin-app
-npm install 
-```
-
-- Web App
-```
-cd web-app
-npm install 
+npm run postinstall 
 ```
 <br>
 
