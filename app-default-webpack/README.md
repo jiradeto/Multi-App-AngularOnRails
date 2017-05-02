@@ -1,0 +1,1 @@
+this is original webpack.config setup without Angular-CLI , don't delete this , use as reference 
