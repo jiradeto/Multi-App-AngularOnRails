@@ -4,9 +4,11 @@ const {
 const {
     WEB_CONFIG
 } = require('./web-app/webpack.config.js');
+const {
+    CAT_CONFIG
+} = require('./cat/webpack.config.js');
+
 
 module.exports = [
-     WEB_CONFIG , ADMIN_CONFIG
+     CAT_CONFIG
 ];
-
-
