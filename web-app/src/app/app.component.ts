@@ -9,8 +9,7 @@ export class AppComponent {
   
   title = 'app works!';
 
-  getImage(name) {
-    
+  getImage(name) {    
      return require("../assets/" + name);
   }
 }

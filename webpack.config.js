@@ -10,5 +10,5 @@ const {
 
 
 module.exports = [
-     CAT_CONFIG
+    WEB_CONFIG, CAT_CONFIG
 ];

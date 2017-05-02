@@ -3,8 +3,8 @@
   "scripts": {
     "postinstall": "cd admin-app && npm install && cd ../web-app && npm install",
     "build:prod": "rm -rf public/wassets/* && webpack --progress --config webpack.prod.js --bail",
-    "build": "rm -rf public/wassets/* && webpack --progress --color",
-    "watch": "rm -rf public/wassets/* && webpack --progress --color --watch"
+    "build": "rm -rf public/wassets && webpack --progress --color",
+    "watch": "rm -rf public/wassets && webpack --progress --color --watch"
   },
   "dependencies": {
     "webpack": "^2.4.1",

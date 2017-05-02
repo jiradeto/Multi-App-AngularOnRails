@@ -4,7 +4,7 @@ module ApplicationHelper
     path = Rails.root.join(app, 'webpack-assets.json')
     json = JSON.parse(File.read(path))
     if app == 'cat'
-      files.push(json['inline']['js'])
+      # files.push(json['inline']['js'])
       files.push(json['polyfills']['js'])
       files.push(json['styles']['js'])
       files.push(json['vendor']['js'])

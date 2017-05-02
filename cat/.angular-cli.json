@@ -7,7 +7,7 @@
       "assets",
       "favicon.ico"
     ],
-    "main": "ZZZ.ts",
+    "main": "main.ts",
     "polyfills": "polyfills.ts",
     "test": "test.ts",
     "tsconfig": "tsconfig.app.json",
@@ -16,12 +16,7 @@
     "styles": [
       "styles.css"
     ],
-    "scripts": [],
-    "environmentSource": "environments/environment.ts",
-    "environments": {
-      "dev": "environments/environment.ts",
-      "prod": "environments/environment.prod.ts"
-    }
+    "scripts": []
   }],
   "e2e": {
     "protractor": {

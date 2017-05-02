@@ -105,12 +105,8 @@ const CAT_CONFIG = {
         "loader": "raw-loader"
       },
       {
-        "test": /\.(eot|svg)$/,
-        "loader": "file-loader?name=[name].[hash:20].[ext]"
-      },
-      {
-        "test": /\.(jpg|png|gif|otf|ttf|woff|woff2|cur|ani)$/,
-        "loader": "url-loader?name=[name].[hash:20].[ext]&limit=10000"
+        test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        loaders: ['file-loader?name=assets/[name].[hash].[ext]']
       },
       {
         "exclude": [
@@ -371,10 +367,6 @@ const CAT_CONFIG = {
     new ProgressPlugin(),
     new BaseHrefWebpackPlugin({}),
     new CommonsChunkPlugin({
-      "name": "inline",
-      "minChunks": null
-    }),
-    new CommonsChunkPlugin({
       "name": "vendor",
       "minChunks": (module) => module.resource && module.resource.startsWith(nodeModules),
       "chunks": [
@@ -391,7 +383,6 @@ const CAT_CONFIG = {
         "environments/environment.ts": "environments/environment.ts"
       },
       "exclude": [],
-
       "tsConfigPath": path.join(__dirname, "src/tsconfig.app.json"),
       "skipCodeGeneration": true
     })
