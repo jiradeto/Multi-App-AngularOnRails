@@ -4,17 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { HelloComponent } from './hello/hello.component';
-import { GoodbyeComponent } from './goodbye/goodbye.component';
+import { MaterializeModule } from 'ng2-materialize';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HelloComponent,
-    GoodbyeComponent,
-    
-  ],  
+    AppComponent
+  ],
   imports: [
+    MaterializeModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule

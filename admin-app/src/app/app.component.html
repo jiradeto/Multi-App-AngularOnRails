@@ -1,2 +1,25 @@
-<h1>  {{title}} , This is Admin APP !!!
-</h1>
+<div class="container">
+  <div class="text-center">
+    <h1>Hello, {{name}}</h1>
+    <br>
+    <div class="form-group">
+      <input type="text" name="name" placeholder="your name here !!" class="form-control" [(ngModel)]="name">
+    </div>
+    <img src="{{pic_path}}" width="150px">
+    <div class="row">
+      <button type="button" class="btn btn-danger" (click)="myModal.open()">Alert</button>
+    </div>
+    <modal #myModal>
+      <modal-header>
+        <h3>Confirm Delete ?</h3>
+      </modal-header>
+      <modal-content>
+        This is from ng2-modal library !!
+      </modal-content>
+      <modal-footer>
+        <button class="btn btn-default" (click)="myModal.close()">Close</button>
+        <button class="btn btn-danger" (click)="deletePhoto(photo,myModal)">Delete</button>
+      </modal-footer>
+    </modal>
+  </div>
+</div>

@@ -13,9 +13,6 @@ const {
 const {
 	WEB_CONFIG
 } = require('./web-app/webpack.config.js');
-const {
-	CAT_CONFIG
-} = require('./cat/webpack.config.js');
 
 var prodConfig = {
 	plugins: [
@@ -39,7 +36,7 @@ var prodConfig = {
 	]
 };
 
-let targets = [ADMIN_CONFIG, WEB_CONFIG, CAT_CONFIG].map((target) => {
+let targets = [ADMIN_CONFIG, WEB_CONFIG].map((target) => {
 	let base = webpackMerge(target, prodConfig);
 	return base;
 });

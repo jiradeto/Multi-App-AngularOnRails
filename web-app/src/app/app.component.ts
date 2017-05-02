@@ -3,13 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+
 })
 export class AppComponent {
-  
-  title = 'app works!';
-
-  getImage(name) {    
-     return require("../assets/" + name);
-  }
+  pic_path  = require("../assets/pic1.png" );
+  name ='';
 }

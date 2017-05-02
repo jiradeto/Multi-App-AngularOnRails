@@ -8,6 +8,8 @@
 
 // RxJS
 import 'rxjs';
+import 'materialize-css/dist/js/materialize.js'
+import 'jquery/dist/jquery.js'
 
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
