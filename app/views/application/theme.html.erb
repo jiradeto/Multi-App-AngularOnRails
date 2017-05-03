@@ -1,0 +1,4 @@
+  <app-root> Loading .. </app-root>
+    <% webpack_script_for('theme').each do |file| %> 
+    <%= content_tag(:script, '', src: file.to_s) %>
+	<% end %>

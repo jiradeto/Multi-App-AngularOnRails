@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'application#web'
+  root to: 'application#theme'
 
   # get 'admin' => 'application#admin'
-  get 'web' => 'application#web'
+  get 'theme' => 'application#web'
 
 end

@@ -1,9 +1,9 @@
 
 const {
-    WEB_CONFIG
-} = require('./web-app/webpack.config.js');
+    THEME_CONFIG
+} = require('./theme/webpack.config.js');
 
 
 module.exports = [
- WEB_CONFIG
+ THEME_CONFIG
 ];
