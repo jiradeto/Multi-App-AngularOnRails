@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'application#web'
 
-  get 'admin' => 'application#admin'
-  get 'cat' => 'application#cat'
+  # get 'admin' => 'application#admin'
+  get 'web' => 'application#web'
+
 end

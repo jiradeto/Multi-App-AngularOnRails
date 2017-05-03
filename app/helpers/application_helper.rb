@@ -8,6 +8,7 @@ module ApplicationHelper
     files.push(json['styles']['js'])
     files.push(json['vendor']['js'])
     files.push(json['main']['js'])
+
     files
  end
 end

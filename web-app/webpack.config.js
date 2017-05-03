@@ -4,21 +4,15 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
 const cssnano = require('cssnano');
-var AssetsPlugin = require('assets-webpack-plugin');
+const AssetsPlugin = require('assets-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const {
   NoEmitOnErrorsPlugin
 } = require('webpack');
 const {
-  GlobCopyWebpackPlugin,
-  BaseHrefWebpackPlugin
-} = require('@angular/cli/plugins/webpack');
-const {
   CommonsChunkPlugin
 } = require('webpack').optimize;
-const {
-  AotPlugin
-} = require('@ngtools/webpack');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const entryPoints = ["inline", "polyfills", "sw-register", "styles", "vendor", "main"];
@@ -54,7 +48,6 @@ const postcssPlugins = function () {
   })] : []);
 };
 
-
 const WEB_CONFIG = {
   "devtool": "source-map",
   "resolve": {
@@ -73,11 +66,14 @@ const WEB_CONFIG = {
     "main": [
       path.join(__dirname, "src/main.ts")
     ],
+    "vendor": [
+      path.join(__dirname, "src/vendor.ts")
+    ],
     "polyfills": [
       path.join(__dirname, "src/polyfills.ts")
     ],
     "styles": [
-      path.join(__dirname, "src/styles.css")
+      path.join(__dirname, "src/styles.scss")
     ]
   },
   output: {
@@ -106,11 +102,11 @@ const WEB_CONFIG = {
       },
       {
         test: /\.(png|jpg|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loaders: ['file-loader?name=assets/[name].[hash].[ext]']
+        loaders: ['file-loader']
       },
       {
         "exclude": [
-          path.join(__dirname, "src/styles.css")
+          path.join(__dirname, "src/styles.scss")
         ],
         "test": /\.css$/,
         "use": [
@@ -133,7 +129,7 @@ const WEB_CONFIG = {
       },
       {
         "exclude": [
-          path.join(__dirname, "src/styles.css")
+          path.join(__dirname, "src/styles.scss")
         ],
         "test": /\.scss$|\.sass$/,
         "use": [
@@ -164,7 +160,7 @@ const WEB_CONFIG = {
       },
       {
         "exclude": [
-          path.join(__dirname, "src/styles.css")
+          path.join(__dirname, "src/styles.scss")
         ],
         "test": /\.less$/,
         "use": [
@@ -193,7 +189,7 @@ const WEB_CONFIG = {
       },
       {
         "exclude": [
-          path.join(__dirname, "src/styles.css")
+          path.join(__dirname, "src/styles.scss")
         ],
         "test": /\.styl$/,
         "use": [
@@ -223,7 +219,7 @@ const WEB_CONFIG = {
       },
       {
         "include": [
-          path.join(__dirname, "src/styles.css")
+          path.join(__dirname, "src/styles.scss")
         ],
         "test": /\.css$/,
         "loaders": ExtractTextPlugin.extract({
@@ -248,40 +244,14 @@ const WEB_CONFIG = {
       },
       {
         "include": [
-          path.join(__dirname, "src/styles.css")
+          path.join(__dirname, "src/styles.scss")
         ],
         "test": /\.scss$|\.sass$/,
-        "loaders": ExtractTextPlugin.extract({
-          "use": [{
-              "loader": "css-loader",
-              "options": {
-                "sourceMap": false,
-                "importLoaders": 1
-              }
-            },
-            {
-              "loader": "postcss-loader",
-              "options": {
-                "ident": "postcss",
-                "plugins": postcssPlugins
-              }
-            },
-            {
-              "loader": "sass-loader",
-              "options": {
-                "sourceMap": false,
-                "precision": 8,
-                "includePaths": []
-              }
-            }
-          ],
-          "fallback": "style-loader",
-          "publicPath": ""
-        })
+        loaders: ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
       },
       {
         "include": [
-          path.join(__dirname, "src/styles.css")
+          path.join(__dirname, "src/styles.scss")
         ],
         "test": /\.less$/,
         "loaders": ExtractTextPlugin.extract({
@@ -312,7 +282,7 @@ const WEB_CONFIG = {
       },
       {
         "include": [
-          path.join(__dirname, "src/styles.css")
+          path.join(__dirname, "src/styles.scss")
         ],
         "test": /\.styl$/,
         "loaders": ExtractTextPlugin.extract({
@@ -343,18 +313,42 @@ const WEB_CONFIG = {
         })
       },
       {
-        "test": /\.ts$/,
-        "loader": "@ngtools/webpack"
+        test: /\.ts$/,
+        use: [{
+            loader: '@angularclass/hmr-loader'
+          },
+          { // MAKE SURE TO CHAIN VANILLA JS CODE, I.E. TS COMPILATION OUTPUT.
+            loader: 'ng-router-loader',
+            options: {
+              loader: 'async-import',
+              genDir: 'compiled'
+
+            }
+          },
+          {
+            loader: 'awesome-typescript-loader',
+            query: {
+              configFileName: path.join(__dirname, "tsconfig.json")
+            }
+          },
+          {
+            loader: 'angular2-template-loader'
+          }
+        ],
+        exclude: [/\.(spec|e2e)\.ts$/]
       }
     ]
   },
   "plugins": [
+    new CopyWebpackPlugin([{
+      from: path.join(__dirname, "src/assets"),
+      to: 'assets'
+    }]),
     new AssetsPlugin({
       path: __dirname
     }),
     new NoEmitOnErrorsPlugin(),
     new ProgressPlugin(),
-    new BaseHrefWebpackPlugin({}),
     new CommonsChunkPlugin({
       "name": "vendor",
       "minChunks": (module) => module.resource && module.resource.startsWith(nodeModules),
@@ -365,12 +359,6 @@ const WEB_CONFIG = {
     new ExtractTextPlugin({
       "filename": "[name].bundle.css",
       "disable": true
-    }),
-    new AotPlugin({
-      "mainPath": path.join(__dirname, "src/main.ts"),      
-      "exclude": [],
-      "tsConfigPath": path.join(__dirname, "src/tsconfig.app.json"),
-      "skipCodeGeneration": true
     })
   ],
   "node": {
