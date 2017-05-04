@@ -11,7 +11,7 @@ export class BaThemeSpinner {
   }
 
   public show():void {
-    this._element.style['display'] = 'block';
+     this._element.style['display'] = 'block';
   }
 
   public hide(delay:number = 0):void {

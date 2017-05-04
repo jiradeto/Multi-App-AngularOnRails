@@ -7,12 +7,12 @@ const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 var path = require('path');
 var webpack = require('webpack');
 
+// const {
+// 	ADMIN_CONFIG
+// } = require('./admin-app/webpack.config.js');
 const {
-	ADMIN_CONFIG
-} = require('./admin-app/webpack.config.js');
-const {
-	WEB_CONFIG
-} = require('./web-app/webpack.config.js');
+	THEME_CONFIG
+} = require('./theme/webpack.config.js');
 
 var prodConfig = {
 	plugins: [
@@ -36,7 +36,7 @@ var prodConfig = {
 	]
 };
 
-let targets = [ADMIN_CONFIG, WEB_CONFIG].map((target) => {
+let targets = [THEME_CONFIG].map((target) => {
 	let base = webpackMerge(target, prodConfig);
 	return base;
 });
