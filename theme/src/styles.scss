@@ -1,11 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+
 @import '~bootstrap/scss/bootstrap.scss';
 @import '~fullcalendar/dist/fullcalendar.css';
 @import '~chartist/dist/chartist.css';
 @import '~leaflet/dist/leaflet.css';
-@import '~ionicons/scss/ionicons.scss';
-@import '~font-awesome/scss/font-awesome.scss';
+
 @import '~normalize.css/normalize.css';
-@import '~roboto-fontface/css/roboto/sass/roboto-fontface.scss';
 @import './app/theme/theme.scss';
+
+//@import '~font-awesome/scss/font-awesome.scss';
+@import '../node_modules/font-awesome/scss/font-awesome.scss';
+@import '~roboto-fontface/css/roboto/sass/roboto-fontface.scss';
+@import '~ionicons/scss/ionicons.scss';
