@@ -2,10 +2,10 @@ const path = require('path');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const postcssUrl = require('postcss-url');
 const cssnano = require('cssnano');
 const AssetsPlugin = require('assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 
 const {
   NoEmitOnErrorsPlugin
@@ -14,39 +14,13 @@ const {
   CommonsChunkPlugin
 } = require('webpack').optimize;
 
+
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const entryPoints = ["inline", "polyfills", "sw-register", "styles", "vendor", "main"];
 const minimizeCss = false;
 const baseHref = "";
 const deployUrl = "";
-const postcssPlugins = function () {
-  return [
-    autoprefixer(),
-    postcssUrl({
-      url: (URL) => {
-        // Only convert root relative URLs, which CSS-Loader won't process into require().
-        if (!URL.startsWith('/') || URL.startsWith('//')) {
-          return URL;
-        }
-        if (deployUrl.match(/:\/\//)) {
-          // If deployUrl contains a scheme, ignore baseHref use deployUrl as is.
-          return `${deployUrl.replace(/\/$/, '')}${URL}`;
-        } else if (baseHref.match(/:\/\//)) {
-          // If baseHref contains a scheme, include it as is.
-          return baseHref.replace(/\/$/, '') +
-            `/${deployUrl}/${URL}`.replace(/\/\/+/g, '/');
-        } else {
-          // Join together base-href, deploy-url and the original URL.
-          // Also dedupe multiple slashes into single ones.
-          return `/${baseHref}/${deployUrl}/${URL}`.replace(/\/\/+/g, '/');
-        }
-      }
-    })
-  ].concat(minimizeCss ? [cssnano({
-    safe: true,
-    autoprefixer: false
-  })] : []);
-};
+
 
 const THEME_CONFIG = {
   "devtool": "source-map",
@@ -63,11 +37,11 @@ const THEME_CONFIG = {
     "modules": [path.join(__dirname, "node_modules/")]
   },
   "entry": {
-    "main": [
-      path.join(__dirname, "src/main.ts")
-    ],
     "vendor": [
       path.join(__dirname, "src/vendor.ts")
+    ],
+    "main": [
+      path.join(__dirname, "src/main.ts")
     ],
     "polyfills": [
       path.join(__dirname, "src/polyfills.ts")
@@ -105,6 +79,25 @@ const THEME_CONFIG = {
         loaders: ['file-loader']
       },
       {
+        "include": [
+          path.join(__dirname, "src/styles.scss")
+        ],
+        "test": /\.css$/,
+        "loaders": ExtractTextPlugin.extract({
+          "use": [{
+              "loader": "css-loader",
+              "options": {
+                "sourceMap": false,
+                "importLoaders": 1
+              }
+            }
+
+          ],
+          "fallback": "style-loader",
+          "publicPath": ""
+        })
+      },
+      {
         "exclude": [
           path.join(__dirname, "src/styles.scss")
         ],
@@ -116,13 +109,6 @@ const THEME_CONFIG = {
             "options": {
               "sourceMap": false,
               "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
             }
           }
         ]
@@ -139,13 +125,6 @@ const THEME_CONFIG = {
             "options": {
               "sourceMap": false,
               "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
             }
           },
           {
@@ -159,158 +138,11 @@ const THEME_CONFIG = {
         ]
       },
       {
-        "exclude": [
-          path.join(__dirname, "src/styles.scss")
-        ],
-        "test": /\.less$/,
-        "use": [
-          "exports-loader?module.exports.toString()",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "less-loader",
-            "options": {
-              "sourceMap": false
-            }
-          }
-        ]
-      },
-      {
-        "exclude": [
-          path.join(__dirname, "src/styles.scss")
-        ],
-        "test": /\.styl$/,
-        "use": [
-          "exports-loader?module.exports.toString()",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "stylus-loader",
-            "options": {
-              "sourceMap": false,
-              "paths": []
-            }
-          }
-        ]
-      },
-      {
-        "include": [
-          path.join(__dirname, "src/styles.scss")
-        ],
-        "test": /\.css$/,
-        "loaders": ExtractTextPlugin.extract({
-          "use": [{
-              "loader": "css-loader",
-              "options": {
-                "sourceMap": false,
-                "importLoaders": 1
-              }
-            },
-            {
-              "loader": "postcss-loader",
-              "options": {
-                "ident": "postcss",
-                "plugins": postcssPlugins
-              }
-            }
-          ],
-          "fallback": "style-loader",
-          "publicPath": ""
-        })
-      },
-      {
         "include": [
           path.join(__dirname, "src/styles.scss")
         ],
         "test": /\.scss$|\.sass$/,
         loaders: ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
-      },
-      {
-        "include": [
-          path.join(__dirname, "src/styles.scss")
-        ],
-        "test": /\.less$/,
-        "loaders": ExtractTextPlugin.extract({
-          "use": [{
-              "loader": "css-loader",
-              "options": {
-                "sourceMap": false,
-                "importLoaders": 1
-              }
-            },
-            {
-              "loader": "postcss-loader",
-              "options": {
-                "ident": "postcss",
-                "plugins": postcssPlugins
-              }
-            },
-            {
-              "loader": "less-loader",
-              "options": {
-                "sourceMap": false
-              }
-            }
-          ],
-          "fallback": "style-loader",
-          "publicPath": ""
-        })
-      },
-      {
-        "include": [
-          path.join(__dirname, "src/styles.scss")
-        ],
-        "test": /\.styl$/,
-        "loaders": ExtractTextPlugin.extract({
-          "use": [{
-              "loader": "css-loader",
-              "options": {
-                "sourceMap": false,
-                "importLoaders": 1
-              }
-            },
-            {
-              "loader": "postcss-loader",
-              "options": {
-                "ident": "postcss",
-                "plugins": postcssPlugins
-              }
-            },
-            {
-              "loader": "stylus-loader",
-              "options": {
-                "sourceMap": false,
-                "paths": []
-              }
-            }
-          ],
-          "fallback": "style-loader",
-          "publicPath": ""
-        })
       },
       {
         test: /\.ts$/,
@@ -340,6 +172,12 @@ const THEME_CONFIG = {
     ]
   },
   "plugins": [
+    new ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      "Tether": 'tether'
+    }),
     new CopyWebpackPlugin([{
       from: path.join(__dirname, "src/assets"),
       to: 'assets'
@@ -350,12 +188,17 @@ const THEME_CONFIG = {
     new NoEmitOnErrorsPlugin(),
     new ProgressPlugin(),
     new CommonsChunkPlugin({
-      "name": "vendor",
-      "minChunks": (module) => module.resource && module.resource.startsWith(nodeModules),
-      "chunks": [
-        "main"
-      ]
+      name: 'polyfills',
+      chunks: ['polyfills']
     }),
+    // This enables tree shaking of the vendor modules
+    new CommonsChunkPlugin({
+      name: 'vendor',
+      chunks: ['main'],
+      minChunks: module => module.resource && module.resource.startsWith(nodeModules),
+    }),
+
+
     new ExtractTextPlugin({
       "filename": "[name].bundle.css",
       "disable": true

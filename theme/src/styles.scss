@@ -8,9 +8,4 @@
 @import '~font-awesome/scss/font-awesome.scss';
 @import '~normalize.css/normalize.css';
 @import '~roboto-fontface/css/roboto/sass/roboto-fontface.scss';
-
-        
-
-img {
-  margin: 30px;
-}
+@import './app/theme/theme.scss';

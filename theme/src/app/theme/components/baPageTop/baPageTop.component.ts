@@ -19,6 +19,8 @@ export class BaPageTop {
   }
 
   public toggleMenu() {
+
+
     this.isMenuCollapsed = !this.isMenuCollapsed;
     this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);
     return false;

@@ -1,4 +1,5 @@
-import {Injectable} from '@angular/core'
+import { Injectable } from '@angular/core'
+const img_path = 'wassets/theme/assets/img'
 
 @Injectable()
 export class BaMsgCenterService {
@@ -15,7 +16,7 @@ export class BaMsgCenterService {
       time: '2 hrs ago'
     },
     {
-      image: 'assets/img/shopping-cart.svg',
+      image: img_path + '/shopping-cart.svg',
       text: 'New orders received.',
       time: '5 hrs ago'
     },
@@ -30,7 +31,7 @@ export class BaMsgCenterService {
       time: '2 days ago'
     },
     {
-      image: 'assets/img/comments.svg',
+      image: img_path + '/comments.svg',
       text: 'New comments on your post.',
       time: '3 days ago'
     },
@@ -79,11 +80,11 @@ export class BaMsgCenterService {
     }
   ];
 
-  public getMessages():Array<Object> {
+  public getMessages(): Array<Object> {
     return this._messages;
   }
 
-  public getNotifications():Array<Object> {
+  public getNotifications(): Array<Object> {
     return this._notifications;
   }
 }

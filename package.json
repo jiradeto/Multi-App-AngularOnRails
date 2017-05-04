@@ -4,7 +4,7 @@
     "postinstall": "cd web-app && npm install",
     "build:prod": "rm -rf public/wassets/* && webpack --progress --config webpack.prod.js --bail",
     "build": "rm -rf public/wassets && webpack --progress --profile --colors --display-error-details --display-cached",
-    "watch": "rm -rf public/wassets && webpack --progress --color --watch"
+    "watch": "rm -rf public/wassets && webpack --progress --color --display-error-details --display-cached --watch"
   },
   "dependencies": {},
   "devDependencies": {
