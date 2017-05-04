@@ -14,12 +14,14 @@ export class BaPageTop {
 
   constructor(private _state:GlobalState) {
     this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
+      
       this.isMenuCollapsed = isCollapsed;
     });
   }
 
   public toggleMenu() {
-
+    
+    
 
     this.isMenuCollapsed = !this.isMenuCollapsed;
     this._state.notifyDataChanged('menu.isCollapsed', this.isMenuCollapsed);

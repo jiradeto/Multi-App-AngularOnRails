@@ -1,8 +1,6 @@
 const path = require('path');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const cssnano = require('cssnano');
 const AssetsPlugin = require('assets-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
@@ -169,6 +167,7 @@ const THEME_CONFIG = {
         ],
         exclude: [/\.(spec|e2e)\.ts$/]
       }
+
     ]
   },
   "plugins": [
@@ -176,7 +175,8 @@ const THEME_CONFIG = {
       $: "jquery",
       jQuery: "jquery",
       "window.jQuery": "jquery",
-      "Tether": 'tether'
+      Tether: "tether",
+      "window.Tether": "tether"
     }),
     new CopyWebpackPlugin([{
       from: path.join(__dirname, "src/assets"),

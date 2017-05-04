@@ -6,8 +6,8 @@ module ApplicationHelper
 
     files.push(json['polyfills']['js'])
     files.push(json['vendor']['js'])
-    files.push(json['styles']['js'])
     files.push(json['main']['js'])
+    files.push(json['styles']['js'])
 
     files
  end

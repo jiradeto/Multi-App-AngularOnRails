@@ -14,7 +14,7 @@ export class BaSidebar {
 
   constructor(private _elementRef: ElementRef, private _state: GlobalState) {
 
-    this._state.subscribe('menu.isCollapsed', (isCollapsed) => {
+    this._state.subscribe('menu.isCollapsed', (isCollapsed) => {      
       this.isMenuCollapsed = isCollapsed;
     });
   }
